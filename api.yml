@@ -4,7 +4,7 @@ metadata:
   name: extraction-api
   namespace: machine-learning
 spec:
-  replicas:
+  replicas: 1
   template:
     metadata:
       labels:
@@ -12,9 +12,9 @@ spec:
     spec:
       containers:
         - name: extraction-api
-          image:
+          image: omnilogic.azurecr.io/extraction-api:v31
           ports:
-            - containerPort:
+            - containerPort: 8000
           resources:
             limits:
               memory: 2.5Gi
@@ -32,8 +32,8 @@ metadata:
     app: extraction-api
 spec:
   ports:
-    - port:
+    - port: 80
       name: http
-      targetPort:
+      targetPort: 8000
   selector:
     app: extraction-api
