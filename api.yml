@@ -1,0 +1,39 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: extraction-api
+  namespace: machine-learning
+spec:
+  replicas:
+  template:
+    metadata:
+      labels:
+        app: extraction-api
+    spec:
+      containers:
+        - name: extraction-api
+          image:
+          ports:
+            - containerPort:
+          resources:
+            limits:
+              memory: 2.5Gi
+              cpu: 500m
+            requests:
+              memory: 2.5Gi
+              cpu: 500m
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: extraction-api
+  namespace: machine-learning
+  labels:
+    app: extraction-api
+spec:
+  ports:
+    - port:
+      name: http
+      targetPort:
+  selector:
+    app: extraction-api
